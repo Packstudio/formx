@@ -5,8 +5,8 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #0a0a0a;
-  color: #ffffff;
+  background: #ffffff;
+  color: #111111;
 }
 
 a {
@@ -30,9 +30,9 @@ button {
   padding: 24px;
   text-align: center;
   background:
-    radial-gradient(circle at top, rgba(255,255,255,0.10), transparent 35%),
-    linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7)),
-    #0a0a0a;
+    radial-gradient(circle at top, rgba(0, 0, 0, 0.06), transparent 35%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)),
+    #ffffff;
   transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
@@ -51,7 +51,7 @@ button {
   font-size: 12px;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: #9a9a9a;
+  color: #777777;
 }
 
 #landing h1 {
@@ -65,7 +65,7 @@ button {
   max-width: 640px;
   margin: 28px auto 0;
   line-height: 1.8;
-  color: #c2c2c2;
+  color: #555555;
 }
 
 .landing-buttons {
@@ -77,33 +77,33 @@ button {
 }
 
 #enterButton,
-#aboutButton,
+#profileButton,
 .button-small,
 .close-button {
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   background: transparent;
-  color: #ffffff;
+  color: #111111;
   cursor: pointer;
   transition: 0.25s ease;
 }
 
 #enterButton,
-#aboutButton {
+#profileButton {
   padding: 13px 24px;
   border-radius: 999px;
 }
 
 #enterButton:hover,
-#aboutButton:hover,
+#profileButton:hover,
 .button-small:hover,
 .close-button:hover {
-  background: #ffffff;
-  color: #000000;
+  background: #111111;
+  color: #ffffff;
 }
 
 .button-secondary {
-  border-color: rgba(255,255,255,0.15);
-  color: #d6d6d6;
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #333333;
 }
 
 .landing-guide {
@@ -111,7 +111,7 @@ button {
   font-size: 12px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: #6f6f6f;
+  color: #888888;
 }
 
 /* MAIN */
@@ -125,10 +125,9 @@ button {
   max-width: 1600px;
   min-height: calc(100vh - 36px);
   margin: 0 auto;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 28px;
-  background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(8px);
+  background: #ffffff;
   overflow: hidden;
 }
 
@@ -137,7 +136,7 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 18px 24px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .brand {
@@ -149,7 +148,7 @@ button {
   font-size: 10px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: #8d8d8d;
+  color: #777777;
 }
 
 .brand h2 {
@@ -189,8 +188,8 @@ button {
   min-height: 540px;
   overflow: hidden;
   border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: #111111;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #f4f4f4;
 }
 
 #hero img {
@@ -205,7 +204,7 @@ button {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.18) 45%, rgba(0,0,0,0.08));
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.2));
   pointer-events: none;
 }
 
@@ -217,17 +216,16 @@ button {
   width: 52px;
   height: 52px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(0,0,0,0.35);
-  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.82);
+  color: #111111;
   font-size: 28px;
   cursor: pointer;
-  transition: 0.25s ease;
 }
 
 .nav-arrow:hover {
-  background: rgba(255,255,255,0.92);
-  color: #000000;
+  background: #111111;
+  color: #ffffff;
 }
 
 .nav-arrow.left {
@@ -256,14 +254,14 @@ button {
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #d6d6d6;
+  color: #666666;
 }
 
 .dot {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8a8a8a;
+  background: #aaaaaa;
 }
 
 #projectTitle {
@@ -275,14 +273,14 @@ button {
 #projectDesc {
   max-width: 760px;
   margin: 16px 0 0;
-  color: #dfdfdf;
+  color: #444444;
   line-height: 1.8;
 }
 
 .image-indicator {
   margin-top: 18px;
   font-size: 14px;
-  color: #bbbbbb;
+  color: #666666;
 }
 
 /* SIDE */
@@ -294,8 +292,8 @@ button {
   min-height: 540px;
   padding: 24px;
   border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(10,10,10,0.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fafafa;
 }
 
 .side-label {
@@ -303,7 +301,7 @@ button {
   font-size: 10px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: #7e7e7e;
+  color: #777777;
 }
 
 #sideTitle {
@@ -321,20 +319,20 @@ button {
   font-size: 10px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #7d7d7d;
+  color: #777777;
 }
 
 .side-group p:last-child,
 .side-contact p {
   margin: 0;
-  color: #cfcfcf;
+  color: #444444;
   line-height: 1.7;
 }
 
 .side-contact {
   margin-top: 30px;
   padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 /* THUMBNAILS */
@@ -349,7 +347,7 @@ button {
   justify-content: space-between;
   gap: 14px;
   padding: 18px 4px 12px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .thumb-header p {
@@ -357,40 +355,58 @@ button {
   font-size: 10px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: #7d7d7d;
+  color: #777777;
 }
 
 .thumb-header span {
   font-size: 12px;
-  color: #868686;
+  color: #888888;
 }
 
 #thumbnails {
   display: flex;
+  flex-wrap: nowrap;
   gap: 12px;
   overflow-x: auto;
+  overflow-y: hidden;
   padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+#thumbnails::-webkit-scrollbar {
+  height: 8px;
+}
+
+#thumbnails::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.14);
+  border-radius: 999px;
 }
 
 .thumb {
+  flex: 0 0 230px;
+  width: 230px;
   min-width: 230px;
   max-width: 230px;
   overflow: hidden;
   border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
   cursor: pointer;
   transition: 0.25s ease;
+  padding: 0;
+  text-align: left;
+  appearance: none;
 }
 
 .thumb:hover {
   transform: translateY(-2px);
-  border-color: rgba(255,255,255,0.22);
+  border-color: rgba(0, 0, 0, 0.2);
+  background: #fafafa;
 }
 
 .thumb.active {
-  border-color: rgba(255,255,255,0.38);
-  background: rgba(255,255,255,0.08);
+  border-color: rgba(0, 0, 0, 0.28);
+  background: #f3f3f3;
 }
 
 .thumb img {
@@ -409,24 +425,24 @@ button {
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #7d7d7d;
+  color: #888888;
 }
 
 .thumb-title {
   margin: 8px 0 0;
   font-size: 14px;
-  color: #f2f2f2;
+  color: #111111;
 }
 
 .thumb-location {
   margin: 6px 0 0;
   font-size: 13px;
-  color: #9a9a9a;
+  color: #666666;
 }
 
-/* ABOUT */
+/* PROFILE OVERLAY */
 
-#about {
+#profileOverlay {
   position: fixed;
   inset: 0;
   z-index: 200;
@@ -434,8 +450,7 @@ button {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: rgba(0,0,0,0.72);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .about-box {
@@ -444,8 +459,8 @@ button {
   max-width: 760px;
   padding: 32px;
   border-radius: 28px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: #0f0f0f;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
 }
 
 .close-button {
@@ -454,9 +469,6 @@ button {
   right: 18px;
   padding: 8px 14px;
   border-radius: 999px;
-  font-size: 12px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
 }
 
 .about-label {
@@ -464,7 +476,7 @@ button {
   font-size: 10px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: #828282;
+  color: #777777;
 }
 
 .about-box h2 {
@@ -474,7 +486,7 @@ button {
 
 .about-text {
   margin-top: 20px;
-  color: #d0d0d0;
+  color: #444444;
   line-height: 1.8;
 }
 
@@ -490,13 +502,13 @@ button {
   font-size: 10px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #7f7f7f;
+  color: #777777;
 }
 
 .about-grid ul {
   margin: 0;
   padding-left: 18px;
-  color: #d0d0d0;
+  color: #444444;
   line-height: 1.8;
 }
 
@@ -564,6 +576,8 @@ button {
   }
 
   .thumb {
+    flex: 0 0 190px;
+    width: 190px;
     min-width: 190px;
     max-width: 190px;
   }

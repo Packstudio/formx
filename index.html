@@ -20,7 +20,7 @@
 
       <div class="landing-buttons">
         <button id="enterButton">Enter</button>
-        <button id="aboutButton" class="button-secondary">Profile</button>
+        <button id="profileButton" class="button-secondary">Profile</button>
       </div>
 
       <p class="landing-guide">Scroll / Click / Enter</p>
@@ -37,18 +37,17 @@
         </div>
 
         <div class="header-actions">
-          <button id="headerAboutButton" class="button-small">About</button>
-          <a href="mailto:hello@formx.kr" class="button-small">Contact</a>
+          <button id="headerContactButton" class="button-small" type="button">Contact</button>
         </div>
       </header>
 
       <section id="viewer">
         <div id="hero">
-          <button class="nav-arrow left" id="prevImage" aria-label="Previous image">‹</button>
+          <button class="nav-arrow left" id="prevImage" type="button" aria-label="Previous image">‹</button>
 
           <img id="heroImage" src="" alt="project image">
 
-          <button class="nav-arrow right" id="nextImage" aria-label="Next image">›</button>
+          <button class="nav-arrow right" id="nextImage" type="button" aria-label="Next image">›</button>
 
           <div id="hero-info">
             <div class="hero-meta">
@@ -117,19 +116,17 @@
     </div>
   </main>
 
-  <!-- ABOUT MODAL -->
-  <div id="about">
+  <!-- PROFILE OVERLAY -->
+  <div id="profileOverlay">
     <div class="about-box">
-      <button id="closeAboutButton" class="close-button">Close</button>
+      <button id="closeProfileButton" class="close-button" type="button">Close</button>
 
       <p class="about-label">Profile</p>
       <h2>FORMX ARCHITECTS</h2>
 
       <p class="about-text">
         FORMX ARCHITECTS is a Seoul-based design practice working across architecture,
-        interior design, renovation, and spatial strategy. The studio is interested in
-        clear form, practical solutions, and an evolving relationship between built space
-        and digital representation.
+        interior design, renovation, and spatial strategy.
       </p>
 
       <div class="about-grid">
