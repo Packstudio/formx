@@ -8,57 +8,151 @@
 </head>
 <body>
 
+  <!-- LANDING -->
   <section id="landing">
-    <h1>FORMX ARCHITECTS</h1>
-    <p>
-      Architecture, interior and spatial design practice exploring clear form,
-      practical solutions and contemporary spatial thinking.
-    </p>
-    <button id="enterButton">Enter</button>
+    <div class="landing-inner">
+      <p class="landing-label">FORMX ARCHITECTS</p>
+      <h1>Spatial Works<br>for Contemporary Life</h1>
+      <p class="landing-text">
+        Architecture, interior, and spatial design practice exploring clear form,
+        practical solutions, and contemporary spatial thinking.
+      </p>
+
+      <div class="landing-buttons">
+        <button id="enterButton">Enter</button>
+        <button id="aboutButton" class="button-secondary">Profile</button>
+      </div>
+
+      <p class="landing-guide">Scroll / Click / Enter</p>
+    </div>
   </section>
 
-  <div id="main">
-    <header>
-      <h2>FORMX ARCHITECTS</h2>
-      <div>
-        <button id="aboutButton">About</button>
-      </div>
-    </header>
+  <!-- MAIN -->
+  <main id="main">
+    <div class="main-wrap">
+      <header class="site-header">
+        <div class="brand" id="brandButton">
+          <p>FORMX</p>
+          <h2>ARCHITECTS</h2>
+        </div>
 
-    <section id="viewer">
-      <div id="hero">
-        <img id="heroImage" src="" alt="project image">
-        <div id="hero-info">
-          <h3 id="projectTitle"></h3>
-          <p id="projectDesc"></p>
+        <div class="header-actions">
+          <button id="headerAboutButton" class="button-small">About</button>
+          <a href="mailto:hello@formx.kr" class="button-small">Contact</a>
+        </div>
+      </header>
+
+      <section id="viewer">
+        <div id="hero">
+          <button class="nav-arrow left" id="prevImage" aria-label="Previous image">‹</button>
+
+          <img id="heroImage" src="" alt="project image">
+
+          <button class="nav-arrow right" id="nextImage" aria-label="Next image">›</button>
+
+          <div id="hero-info">
+            <div class="hero-meta">
+              <span id="heroType"></span>
+              <span class="dot"></span>
+              <span id="heroYear"></span>
+              <span class="dot"></span>
+              <span id="heroLocation"></span>
+            </div>
+
+            <h3 id="projectTitle"></h3>
+            <p id="projectDesc"></p>
+
+            <div class="image-indicator">
+              <span id="imageCurrent">1</span>
+              <span>/</span>
+              <span id="imageTotal">1</span>
+            </div>
+          </div>
+        </div>
+
+        <aside id="side">
+          <p class="side-label">Current Selection</p>
+          <h3 id="sideTitle"></h3>
+
+          <div class="side-group">
+            <p class="side-title">Location</p>
+            <p id="sideLocation"></p>
+          </div>
+
+          <div class="side-group">
+            <p class="side-title">Year</p>
+            <p id="sideYear"></p>
+          </div>
+
+          <div class="side-group">
+            <p class="side-title">Program</p>
+            <p id="sideType"></p>
+          </div>
+
+          <div class="side-group">
+            <p class="side-title">Profile</p>
+            <p>
+              FORMX ARCHITECTS is a design practice focused on architecture,
+              interior design, renovation, and spatial identity.
+            </p>
+          </div>
+
+          <div class="side-contact">
+            <p class="side-title">Contact</p>
+            <p>hello@formx.kr</p>
+            <p>+82 10-1234-5678</p>
+            <p>Seoul, Republic of Korea</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="thumb-section">
+        <div class="thumb-header">
+          <p>Selected Projects</p>
+          <span>Click a thumbnail to switch project</span>
+        </div>
+
+        <div id="thumbnails"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ABOUT MODAL -->
+  <div id="about">
+    <div class="about-box">
+      <button id="closeAboutButton" class="close-button">Close</button>
+
+      <p class="about-label">Profile</p>
+      <h2>FORMX ARCHITECTS</h2>
+
+      <p class="about-text">
+        FORMX ARCHITECTS is a Seoul-based design practice working across architecture,
+        interior design, renovation, and spatial strategy. The studio is interested in
+        clear form, practical solutions, and an evolving relationship between built space
+        and digital representation.
+      </p>
+
+      <div class="about-grid">
+        <div>
+          <p class="about-subtitle">Services</p>
+          <ul>
+            <li>Architectural Design</li>
+            <li>Interior Design</li>
+            <li>Renovation / Remodeling</li>
+            <li>Concept Development</li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="about-subtitle">Contact</p>
+          <ul>
+            <li>hello@formx.kr</li>
+            <li>+82 10-1234-5678</li>
+            <li>Seoul, Republic of Korea</li>
+            <li>@formxarchitects</li>
+          </ul>
         </div>
       </div>
-
-      <div id="side">
-        <h3 id="sideTitle"></h3>
-
-        <p><b>Location</b></p>
-        <p id="sideLocation"></p>
-
-        <p><b>Year</b></p>
-        <p id="sideYear"></p>
-
-        <p><b>Program</b></p>
-        <p id="sideType"></p>
-      </div>
-    </section>
-
-    <div id="thumbnails"></div>
-  </div>
-
-  <div id="about">
-    <div class="box">
-      <h2>FORMX ARCHITECTS</h2>
-      <p>
-        FORMX is a design studio working across architecture, interior design and spatial strategy.
-      </p>
-      <p>Email : hello@formxarchitects.com</p>
-      <button id="closeAboutButton">Close</button>
     </div>
   </div>
 

@@ -1,45 +1,34 @@
-const projects = [
-  {
-    title: "Terraced Housing Complex",
-    location: "Busan",
-    year: "2025",
-    type: "Residential",
-    desc: "Hillside terraced housing project exploring layered living.",
-    img: "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80"
-  },
-  {
-    title: "Community Stitch Center",
-    location: "Seoul",
-    year: "2024",
-    type: "Community",
-    desc: "Community building reconnecting fragmented urban flows.",
-    img: "https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1600&q=80"
-  },
-  {
-    title: "Urban Renovation House",
-    location: "Suwon",
-    year: "2023",
-    type: "Renovation",
-    desc: "Urban house renovation focusing on daylight and clarity.",
-    img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
-  }
-];
-
-let active = 0;
+let projects = [];
+let activeProjectIndex = 0;
+let activeImageIndex = 0;
 
 const landing = document.getElementById("landing");
 const enterButton = document.getElementById("enterButton");
 const aboutButton = document.getElementById("aboutButton");
+const headerAboutButton = document.getElementById("headerAboutButton");
 const closeAboutButton = document.getElementById("closeAboutButton");
 const about = document.getElementById("about");
+const brandButton = document.getElementById("brandButton");
+
 const heroImage = document.getElementById("heroImage");
+const heroType = document.getElementById("heroType");
+const heroYear = document.getElementById("heroYear");
+const heroLocation = document.getElementById("heroLocation");
 const projectTitle = document.getElementById("projectTitle");
 const projectDesc = document.getElementById("projectDesc");
+
+const imageCurrent = document.getElementById("imageCurrent");
+const imageTotal = document.getElementById("imageTotal");
+
 const sideTitle = document.getElementById("sideTitle");
 const sideLocation = document.getElementById("sideLocation");
 const sideYear = document.getElementById("sideYear");
 const sideType = document.getElementById("sideType");
+
 const thumbnails = document.getElementById("thumbnails");
+
+const prevImageButton = document.getElementById("prevImage");
+const nextImageButton = document.getElementById("nextImage");
 
 function enterSite() {
   landing.classList.add("hidden");
@@ -53,44 +42,125 @@ function closeAbout() {
   about.style.display = "none";
 }
 
-function showProject(index) {
-  const p = projects[index];
-  active = index;
+function updateHeroImage() {
+  const project = projects[activeProjectIndex];
+  const images = project.images || [];
 
-  heroImage.src = p.img;
-  heroImage.alt = p.title;
-  projectTitle.innerText = p.title;
-  projectDesc.innerText = p.desc;
+  if (images.length === 0) {
+    heroImage.src = "";
+    heroImage.alt = project.title;
+    imageCurrent.textContent = "0";
+    imageTotal.textContent = "0";
+    return;
+  }
 
-  sideTitle.innerText = p.title;
-  sideLocation.innerText = p.location;
-  sideYear.innerText = p.year;
-  sideType.innerText = p.type;
+  heroImage.src = images[activeImageIndex];
+  heroImage.alt = `${project.title} image ${activeImageIndex + 1}`;
+  imageCurrent.textContent = String(activeImageIndex + 1);
+  imageTotal.textContent = String(images.length);
 }
 
-function loadThumbnails() {
+function showProject(index) {
+  activeProjectIndex = index;
+  activeImageIndex = 0;
+
+  const project = projects[index];
+
+  heroType.textContent = project.type;
+  heroYear.textContent = project.year;
+  heroLocation.textContent = project.location;
+  projectTitle.textContent = project.title;
+  projectDesc.textContent = project.desc;
+
+  sideTitle.textContent = project.title;
+  sideLocation.textContent = project.location;
+  sideYear.textContent = project.year;
+  sideType.textContent = project.type;
+
+  updateHeroImage();
+  renderThumbnails();
+}
+
+function showNextImage() {
+  const project = projects[activeProjectIndex];
+  const images = project.images || [];
+
+  if (images.length <= 1) return;
+
+  activeImageIndex = (activeImageIndex + 1) % images.length;
+  updateHeroImage();
+}
+
+function showPrevImage() {
+  const project = projects[activeProjectIndex];
+  const images = project.images || [];
+
+  if (images.length <= 1) return;
+
+  activeImageIndex = (activeImageIndex - 1 + images.length) % images.length;
+  updateHeroImage();
+}
+
+function renderThumbnails() {
   thumbnails.innerHTML = "";
 
-  projects.forEach((p, i) => {
-    const el = document.createElement("div");
-    el.className = "thumb";
+  projects.forEach((project, index) => {
+    const thumb = document.createElement("button");
+    thumb.className = "thumb";
+    if (index === activeProjectIndex) {
+      thumb.classList.add("active");
+    }
 
-    el.innerHTML = `
-      <img src="${p.img}" alt="${p.title}">
-      <div>
-        <b>${p.title}</b><br>
-        ${p.location}
+    const thumbImage = project.thumbnail || (project.images && project.images[0]) || "";
+
+    thumb.innerHTML = `
+      <img src="${thumbImage}" alt="${project.title}">
+      <div class="thumb-text">
+        <p class="thumb-year">${project.year}</p>
+        <p class="thumb-title">${project.title}</p>
+        <p class="thumb-location">${project.location}</p>
       </div>
     `;
 
-    el.addEventListener("click", () => showProject(i));
-    thumbnails.appendChild(el);
+    thumb.addEventListener("click", () => showProject(index));
+    thumbnails.appendChild(thumb);
   });
 }
 
+async function loadProjects() {
+  try {
+    const response = await fetch("projects.json");
+
+    if (!response.ok) {
+      throw new Error("Failed to load projects.json");
+    }
+
+    projects = await response.json();
+
+    if (!Array.isArray(projects) || projects.length === 0) {
+      throw new Error("No project data found.");
+    }
+
+    showProject(0);
+  } catch (error) {
+    console.error(error);
+    projectTitle.textContent = "Project data could not be loaded.";
+    projectDesc.textContent = "Please check projects.json and file paths.";
+  }
+}
+
+/* EVENTS */
+
 enterButton.addEventListener("click", enterSite);
 aboutButton.addEventListener("click", openAbout);
+headerAboutButton.addEventListener("click", openAbout);
 closeAboutButton.addEventListener("click", closeAbout);
+brandButton.addEventListener("click", () => {
+  landing.classList.remove("hidden");
+});
+
+prevImageButton.addEventListener("click", showPrevImage);
+nextImageButton.addEventListener("click", showNextImage);
 
 window.addEventListener("wheel", function (event) {
   if (event.deltaY > 20 && !landing.classList.contains("hidden")) {
@@ -106,7 +176,20 @@ window.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {
     closeAbout();
   }
+
+  if (event.key === "ArrowLeft" && landing.classList.contains("hidden")) {
+    showPrevImage();
+  }
+
+  if (event.key === "ArrowRight" && landing.classList.contains("hidden")) {
+    showNextImage();
+  }
 });
 
-showProject(0);
-loadThumbnails();
+about.addEventListener("click", function (event) {
+  if (event.target === about) {
+    closeAbout();
+  }
+});
+
+loadProjects();

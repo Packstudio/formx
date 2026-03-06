@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Terraced Housing Complex",
+    "location": "Busan, Korea",
+    "year": "2025",
+    "type": "Residential",
+    "desc": "A hillside housing proposal that explores layered living, shared outdoor space, and a strong relationship between architecture and terrain.",
+    "thumbnail": "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Community Stitch Center",
+    "location": "Seoul, Korea",
+    "year": "2024",
+    "type": "Community",
+    "desc": "A small civic project imagined as an urban stitch, reconnecting fragmented neighborhood flows through public space, learning, and gathering.",
+    "thumbnail": "https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1600&q=80"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Urban Renovation House",
+    "location": "Suwon, Korea",
+    "year": "2023",
+    "type": "Renovation",
+    "desc": "A renovation project focused on spatial clarity, refined daylight, and a stronger connection between domestic life and the street.",
+    "thumbnail": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1600&q=80"
+    ]
+  }
+]
