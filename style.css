@@ -1,0 +1,187 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0a0a0a;
+  color: white;
+}
+
+#landing {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  background: #0a0a0a;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  z-index: 10;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+#landing.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+#landing h1 {
+  font-size: 60px;
+  margin: 20px 0;
+}
+
+#landing p {
+  color: #aaa;
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+button {
+  margin-top: 30px;
+  padding: 12px 30px;
+  background: none;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+}
+
+#main {
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+header h2 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
+#viewer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+#hero {
+  position: relative;
+}
+
+#hero img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+}
+
+#hero-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 30px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#hero-info h3 {
+  margin: 10px 0;
+}
+
+#hero-info p {
+  margin: 0;
+  color: #ddd;
+  line-height: 1.6;
+}
+
+#side {
+  background: #111;
+  padding: 20px;
+}
+
+#side p {
+  color: #bbb;
+  line-height: 1.6;
+}
+
+#thumbnails {
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.thumb {
+  min-width: 200px;
+  cursor: pointer;
+  border: 1px solid #333;
+  background: #111;
+}
+
+.thumb img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+
+.thumb div {
+  padding: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+#about {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#about .box {
+  background: #111;
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#about .box p {
+  color: #ccc;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  #main {
+    padding: 20px;
+  }
+
+  #viewer {
+    grid-template-columns: 1fr;
+  }
+
+  #landing h1 {
+    font-size: 40px;
+  }
+
+  #hero img {
+    height: 360px;
+  }
+}
