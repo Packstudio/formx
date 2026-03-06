@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "title": "Project 01",
+    "location": "Seoul, Korea",
+    "year": "2025",
+    "type": "Architecture",
+    "desc": "Short description of the project. Replace this with your actual project summary.",
+    "thumbnail": "images/project-01-01.jpg",
+    "images": [
+      "images/project-01-01.jpg",
+      "images/project-01-02.jpg",
+      "images/project-01-03.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Project 02",
+    "location": "Busan, Korea",
+    "year": "2025",
+    "type": "Interior",
+    "desc": "Short description of the project. Replace this with your actual project summary.",
+    "thumbnail": "images/project-02-01.jpg",
+    "images": [
+      "images/project-02-01.jpg",
+      "images/project-02-02.jpg",
+      "images/project-02-03.jpg"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Project 03",
+    "location": "Incheon, Korea",
+    "year": "2024",
+    "type": "Renovation",
+    "desc": "Short description of the project. Replace this with your actual project summary.",
+    "thumbnail": "images/project-03-01.jpg",
+    "images": [
+      "images/project-03-01.jpg",
+      "images/project-03-02.jpg",
+      "images/project-03-03.jpg"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Project 04",
+    "location": "Daejeon, Korea",
+    "year": "2024",
+    "type": "Community",
+    "desc": "Short description of the project. Replace this with your actual project summary.",
+    "thumbnail": "images/project-04-01.jpg",
+    "images": [
+      "images/project-04-01.jpg",
+      "images/project-04-02.jpg",
+      "images/project-04-03.jpg"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Project 05",
+    "location": "Daegu, Korea",
+    "year": "2024",
+    "type": "Residential",
+    "desc": "Short description of the project. Replace this with your actual project summary.",
+    "thumbnail": "images/project-05-01.jpg",
+    "images": [
+      "images/project-05-01.jpg",
+      "images/project-05-02.jpg",
+      "images/project-05-03.jpg"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Project 06",
+    "location": "Gwangju, Korea",
+    "year": "2023",
+    "type": "Office",
+    "desc": "Short description of the project. Replace this with your actual project summary.",
+    "thumbnail": "images/project-06-01.jpg",
+    "images": [
+      "images/project-06-01.jpg",
+      "images/project-06-02.jpg",
+      "images/project-06-03.jpg"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Project 07",
+    "location": "Suwon, Korea",
+    "year": "2023",
+    "type": "Education",
+    "desc": "Short description of the project. Replace this with your actual project summary.",
+    "thumbnail": "images/project-07-01.jpg",
+    "images": [
+      "images/project-07-01.jpg",
+      "images/project-07-02.jpg",
+      "images/project-07-03.jpg"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Project 08",
+    "location": "Ulsan, Korea",
+    "year": "2023",
+    "type": "Healthcare",
+    "desc": "Short description of the project. Replace this with your actual project summary.",
+    "thumbnail": "images/project-08-01.jpg",
+    "images": [
+      "images/project-08-01.jpg",
+      "images/project-08-02.jpg",
+      "images/project-08-03.jpg"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Project 09",
+    "location": "Jeonju, Korea",
+    "year": "2022",
+    "type": "Mixed Use",
+    "desc": "Short description of the project. Replace this with your actual project summary.",
+    "thumbnail": "images/project-09-01.jpg",
+    "images": [
+      "images/project-09-01.jpg",
+      "images/project-09-02.jpg",
+      "images/project-09-03.jpg"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Project 10",
+    "location": "Jeju, Korea",
+    "year": "2022",
+    "type": "Hospitality",
+    "desc": "Short description of the project. Replace this with your actual project summary.",
+    "thumbnail": "images/project-10-01.jpg",
+    "images": [
+      "images/project-10-01.jpg",
+      "images/project-10-02.jpg",
+      "images/project-10-03.jpg"
+    ]
+  }
+]
