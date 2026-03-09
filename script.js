@@ -21,6 +21,7 @@ const sideTitle = document.getElementById("sideTitle");
 const sideLocation = document.getElementById("sideLocation");
 const sideYear = document.getElementById("sideYear");
 const sideType = document.getElementById("sideType");
+const sideDesc = document.getElementById("side-desc");
 
 const thumbnails = document.getElementById("thumbnails");
 
@@ -80,6 +81,10 @@ function showProject(index) {
   sideLocation.innerText = p.location || "";
   sideYear.innerText = p.year || "";
   sideType.innerText = p.type || "";
+
+  if (sideDesc) {
+    sideDesc.innerText = p.desc || "";
+  }
 
   updateActiveThumbnail();
 }
@@ -161,6 +166,14 @@ async function loadProjects() {
     if (!Array.isArray(projects) || projects.length === 0) {
       throw new Error("No project data found.");
     }
+
+    // 연도 기준 내림차순 정렬
+    // 예: 2024 > 2023.02 > 2022 > 2019.10
+    projects.sort((a, b) => {
+      const yearA = String(a.year || "");
+      const yearB = String(b.year || "");
+      return yearB.localeCompare(yearA);
+    });
 
     showProject(0);
     loadThumbnails();
