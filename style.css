@@ -270,10 +270,10 @@ button {
   gap: 8px;
   flex-wrap: wrap;
   margin-bottom: 10px;
-  font-size: 10px;
+  font-size: 0.3em;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #666666;
+  color: #ffffff;
 }
 
 .dot {
@@ -285,23 +285,24 @@ button {
 
 #projectTitle {
   margin: 0;
-  font-size: 30px;
-  line-height: 1.1;
+  font-size: 15px;
+  line-height: 0.5;
   font-weight: 600;
+  color: #ffffff;
 }
 
 #projectDesc {
   max-width: 520px;
   margin: 10px 0 0;
-  color: #444444;
+  color: #ffffff;
   line-height: 1.6;
-  font-size: 14px;
+  font-size: 10px;
 }
 
 .image-indicator {
   margin-top: 14px;
-  font-size: 13px;
-  color: #666666;
+  font-size: 10px;
+  color: #ffffff;
 }
 
 /* SIDE */
