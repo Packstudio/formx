@@ -28,11 +28,11 @@
   },
   {
     "id": 3,
-    "title": "Project 03",
-    "location": "Incheon, Korea",
-    "year": "2019.01",
-    "type": "Renovation",
-    "desc": "Short description of the project. Replace this with your actual project summary.",
+    "title": "성남역사박물관 전시동 건축 설계공모(계획)",
+    "location": "Seongnam, Korea",
+    "year": "2022.06",
+    "type": "Architecture",
+    "desc": "성남의 역동적인 도시와 전통적인 인문 지리, 역사문화를 담은 박물관으로 계획",
     "thumbnail": "images/project-03-01.jpg",
     "images": [
       "images/project-03-01.jpg",
@@ -42,30 +42,14 @@
   },
   {
     "id": 4,
-    "title": "Project 04",
-    "location": "Daejeon, Korea",
-    "year": "2019.02",
+    "title": "국립 호남권 청소년 디딤센터 설계공모(계획)",
+    "location": "Iksan, Korea",
+    "year": "2023.09",
     "type": "Community",
-    "desc": "Short description of the project. Replace this with your actual project summary.",
+    "desc": "주의력결핍 과잉행동(ADHD)이나 우울, 불안으로 인해 어려움을 겪는 만 9~18세 청소년을 지원하는 기숙형 치유시설",
     "thumbnail": "images/project-04-01.jpg",
     "images": [
-      "images/project-04-01.jpg",
-      "images/project-04-02.jpg",
-      "images/project-04-03.jpg"
-    ]
-  },
-  {
-    "id": 5,
-    "title": "Project 05",
-    "location": "Daegu, Korea",
-    "year": "2019.03",
-    "type": "Residential",
-    "desc": "Short description of the project. Replace this with your actual project summary.",
-    "thumbnail": "images/project-05-01.jpg",
-    "images": [
-      "images/project-05-01.jpg",
-      "images/project-05-02.jpg",
-      "images/project-05-03.jpg"
+      "images/project-04-01.jpg"
     ]
   }
 ]
