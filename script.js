@@ -31,6 +31,7 @@ const nextImageButton = document.getElementById("nextImage");
 const imageCurrent = document.getElementById("imageCurrent");
 const imageTotal = document.getElementById("imageTotal");
 
+
 function enterSite() {
   landing.classList.add("hidden");
 }
@@ -42,6 +43,7 @@ function openProfile() {
 function closeProfile() {
   profileOverlay.style.display = "none";
 }
+
 
 function updateHeroImage() {
   const project = projects[activeProjectIndex];
@@ -61,7 +63,50 @@ function updateHeroImage() {
   imageTotal.innerText = project.images.length;
 }
 
+
+/* -----------------------------
+   제목을 항상 한 줄로 맞추는 함수
+----------------------------- */
+
+function fitProjectTitleToOneLine() {
+
+  const isMobile = window.innerWidth <= 480;
+  const isTablet = window.innerWidth <= 768;
+
+  let maxSize;
+  let minSize;
+
+  if (isMobile) {
+    maxSize = 12;
+    minSize = 8;
+  } 
+  else if (isTablet) {
+    maxSize = 14;
+    minSize = 9;
+  } 
+  else {
+    maxSize = 15;
+    minSize = 10;
+  }
+
+  projectTitle.style.fontSize = maxSize + "px";
+
+  while (
+    projectTitle.scrollWidth > projectTitle.clientWidth &&
+    maxSize > minSize
+  ) {
+    maxSize -= 0.5;
+    projectTitle.style.fontSize = maxSize + "px";
+  }
+}
+
+
+/* -----------------------------
+   프로젝트 표시
+----------------------------- */
+
 function showProject(index) {
+
   const p = projects[index];
   if (!p) return;
 
@@ -87,10 +132,19 @@ function showProject(index) {
   }
 
   updateActiveThumbnail();
+
+  fitProjectTitleToOneLine();
 }
 
+
+/* -----------------------------
+   이미지 이동
+----------------------------- */
+
 function showPrevImage() {
+
   const project = projects[activeProjectIndex];
+
   if (!project || !project.images || project.images.length <= 1) return;
 
   activeImageIndex--;
@@ -102,8 +156,11 @@ function showPrevImage() {
   updateHeroImage();
 }
 
+
 function showNextImage() {
+
   const project = projects[activeProjectIndex];
+
   if (!project || !project.images || project.images.length <= 1) return;
 
   activeImageIndex++;
@@ -115,22 +172,38 @@ function showNextImage() {
   updateHeroImage();
 }
 
+
+/* -----------------------------
+   썸네일 활성화
+----------------------------- */
+
 function updateActiveThumbnail() {
+
   const thumbElements = thumbnails.querySelectorAll(".thumb");
 
   thumbElements.forEach((thumb, index) => {
+
     if (index === activeProjectIndex) {
       thumb.classList.add("active");
-    } else {
+    } 
+    else {
       thumb.classList.remove("active");
     }
+
   });
 }
 
+
+/* -----------------------------
+   썸네일 생성
+----------------------------- */
+
 function loadThumbnails() {
+
   thumbnails.innerHTML = "";
 
   projects.forEach((p, i) => {
+
     const el = document.createElement("button");
     el.className = "thumb";
     el.type = "button";
@@ -147,14 +220,23 @@ function loadThumbnails() {
     `;
 
     el.addEventListener("click", () => showProject(i));
+
     thumbnails.appendChild(el);
+
   });
 
   updateActiveThumbnail();
 }
 
+
+/* -----------------------------
+   JSON 로드
+----------------------------- */
+
 async function loadProjects() {
+
   try {
+
     const res = await fetch("projects.json");
 
     if (!res.ok) {
@@ -167,8 +249,6 @@ async function loadProjects() {
       throw new Error("No project data found.");
     }
 
-    // 연도 기준 내림차순 정렬
-    // 예: 2024 > 2023.02 > 2022 > 2019.10
     projects.sort((a, b) => {
       const yearA = String(a.year || "");
       const yearB = String(b.year || "");
@@ -176,16 +256,27 @@ async function loadProjects() {
     });
 
     showProject(0);
+
     loadThumbnails();
-  } catch (err) {
+
+  } 
+  catch (err) {
+
     console.error(err);
 
     projectTitle.innerText = "Project data could not be loaded.";
     projectDesc.innerText = "Please check projects.json and file paths.";
+
     imageCurrent.innerText = "0";
     imageTotal.innerText = "0";
+
   }
 }
+
+
+/* -----------------------------
+   이벤트
+----------------------------- */
 
 enterButton.addEventListener("click", enterSite);
 
@@ -215,14 +306,22 @@ if (nextImageButton) {
   nextImageButton.addEventListener("click", showNextImage);
 }
 
+
 window.addEventListener("wheel", (event) => {
+
   if (event.deltaY > 20 && !landing.classList.contains("hidden")) {
     enterSite();
   }
+
 });
 
+
 window.addEventListener("keydown", (event) => {
-  if ((event.key === "Enter" || event.key === "ArrowDown") && !landing.classList.contains("hidden")) {
+
+  if (
+    (event.key === "Enter" || event.key === "ArrowDown") &&
+    !landing.classList.contains("hidden")
+  ) {
     enterSite();
   }
 
@@ -231,6 +330,7 @@ window.addEventListener("keydown", (event) => {
   }
 
   if (landing.classList.contains("hidden")) {
+
     if (event.key === "ArrowLeft") {
       showPrevImage();
     }
@@ -238,15 +338,34 @@ window.addEventListener("keydown", (event) => {
     if (event.key === "ArrowRight") {
       showNextImage();
     }
+
   }
+
 });
 
+
 if (profileOverlay) {
+
   profileOverlay.addEventListener("click", (event) => {
+
     if (event.target === profileOverlay) {
       closeProfile();
     }
+
   });
+
 }
+
+
+/* -----------------------------
+   화면 크기 변경 시 제목 재계산
+----------------------------- */
+
+window.addEventListener("resize", fitProjectTitleToOneLine);
+
+
+/* -----------------------------
+   초기 실행
+----------------------------- */
 
 loadProjects();

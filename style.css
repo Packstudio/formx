@@ -285,18 +285,21 @@ button {
 
 #projectTitle {
   margin: 0;
-  font-size: 15px;
-  line-height: 0.5;
   font-weight: 600;
   color: #ffffff;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  word-break: keep-all;
 }
 
 #projectDesc {
   max-width: 520px;
   margin: 10px 0 0;
   color: #ffffff;
-  line-height: 1.6;
+  line-height: 1.5;
   font-size: 10px;
+  word-break: keep-all;
 }
 
 .image-indicator {
@@ -560,7 +563,7 @@ button {
   }
 
   #projectTitle {
-    font-size: 26px;
+    max-width: 80%;
   }
 }
 
@@ -592,16 +595,17 @@ button {
   }
 
   #hero-info {
-    padding: 16px 18px;
+    padding: 12px 14px;
+  }
+
+  .hero-meta,
+  #projectDesc,
+  .image-indicator {
+    display: none;
   }
 
   #projectTitle {
-    font-size: 24px;
-  }
-
-  #projectDesc {
-    font-size: 13px;
-    max-width: 100%;
+    max-width: 80%;
   }
 
   #side {
@@ -625,5 +629,29 @@ button {
 
   .about-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  #hero-info {
+    padding: 10px 12px;
+  }
+
+  #projectTitle {
+    max-width: 80%;
+  }
+
+  .nav-arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 22px;
+  }
+
+  .nav-arrow.left {
+    left: 10px;
+  }
+
+  .nav-arrow.right {
+    right: 10px;
   }
 }
