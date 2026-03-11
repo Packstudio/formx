@@ -1,14 +1,11 @@
 let projects = [];
 let activeProjectIndex = 0;
 let activeImageIndex = 0;
+let currentMode = "projects"; // "projects" | "gallery"
 
-const landing = document.getElementById("landing");
+const body = document.body;
+const main = document.getElementById("main");
 const enterButton = document.getElementById("enterButton");
-const profileButton = document.getElementById("profileButton");
-const headerContactButton = document.getElementById("headerContactButton");
-const closeProfileButton = document.getElementById("closeProfileButton");
-const profileOverlay = document.getElementById("profileOverlay");
-const brandButton = document.getElementById("brandButton");
 
 const heroImage = document.getElementById("heroImage");
 const heroType = document.getElementById("heroType");
@@ -17,33 +14,35 @@ const heroLocation = document.getElementById("heroLocation");
 const projectTitle = document.getElementById("projectTitle");
 const projectDesc = document.getElementById("projectDesc");
 
-const sideTitle = document.getElementById("sideTitle");
-const sideLocation = document.getElementById("sideLocation");
-const sideYear = document.getElementById("sideYear");
-const sideType = document.getElementById("sideType");
-const sideDesc = document.getElementById("side-desc");
-
 const thumbnails = document.getElementById("thumbnails");
-
 const prevImageButton = document.getElementById("prevImage");
 const nextImageButton = document.getElementById("nextImage");
 
 const imageCurrent = document.getElementById("imageCurrent");
 const imageTotal = document.getElementById("imageTotal");
 
+const backButton = document.getElementById("backButton");
+const thumbSectionLabel = document.getElementById("thumbSectionLabel");
+const thumbSectionGuide = document.getElementById("thumbSectionGuide");
+
+const contactToggle = document.getElementById("contactToggle");
+const contactPanel = document.getElementById("contactPanel");
 
 function enterSite() {
-  landing.classList.add("hidden");
+  body.classList.add("entered");
 }
 
-function openProfile() {
-  profileOverlay.style.display = "flex";
-}
+function getSafeProjectImage(project, imageIndex = 0) {
+  if (!project || !Array.isArray(project.images) || project.images.length === 0) {
+    return "";
+  }
 
-function closeProfile() {
-  profileOverlay.style.display = "none";
-}
+  if (imageIndex < 0 || imageIndex >= project.images.length) {
+    return project.images[0];
+  }
 
+  return project.images[imageIndex];
+}
 
 function updateHeroImage() {
   const project = projects[activeProjectIndex];
@@ -56,187 +55,233 @@ function updateHeroImage() {
     return;
   }
 
-  heroImage.src = project.images[activeImageIndex];
-  heroImage.alt = `${project.title} ${activeImageIndex + 1}`;
+  let displayImageIndex = 0;
+  let totalCount = 0;
 
-  imageCurrent.innerText = activeImageIndex + 1;
-  imageTotal.innerText = project.images.length;
-}
-
-
-/* -----------------------------
-   제목을 항상 한 줄로 맞추는 함수
------------------------------ */
-
-function fitProjectTitleToOneLine() {
-
-  const isMobile = window.innerWidth <= 480;
-  const isTablet = window.innerWidth <= 768;
-
-  let maxSize;
-  let minSize;
-
-  if (isMobile) {
-    maxSize = 12;
-    minSize = 8;
-  } 
-  else if (isTablet) {
-    maxSize = 14;
-    minSize = 9;
-  } 
-  else {
-    maxSize = 15;
-    minSize = 10;
+  if (currentMode === "projects") {
+    displayImageIndex = 0;
+    totalCount = projects.length;
+    heroImage.src = getSafeProjectImage(project, 0);
+    heroImage.alt = `${project.title} cover`;
+    imageCurrent.innerText = String(activeProjectIndex + 1);
+    imageTotal.innerText = String(totalCount);
+    return;
   }
 
-  projectTitle.style.fontSize = maxSize + "px";
+  displayImageIndex = activeImageIndex;
+  totalCount = project.images.length;
 
-  while (
-    projectTitle.scrollWidth > projectTitle.clientWidth &&
-    maxSize > minSize
-  ) {
-    maxSize -= 0.5;
-    projectTitle.style.fontSize = maxSize + "px";
-  }
+  heroImage.src = getSafeProjectImage(project, displayImageIndex);
+  heroImage.alt = `${project.title} ${displayImageIndex + 1}`;
+
+  imageCurrent.innerText = String(displayImageIndex + 1);
+  imageTotal.innerText = String(totalCount);
 }
 
+function updateProjectInfo() {
+  const project = projects[activeProjectIndex];
+  if (!project) return;
 
-/* -----------------------------
-   프로젝트 표시
------------------------------ */
+  heroType.innerText = project.type || "";
+  heroYear.innerText = project.year || "";
+  heroLocation.innerText = project.location || "";
 
-function showProject(index) {
-
-  const p = projects[index];
-  if (!p) return;
-
-  activeProjectIndex = index;
-  activeImageIndex = 0;
-
-  updateHeroImage();
-
-  heroType.innerText = p.type || "";
-  heroYear.innerText = p.year || "";
-  heroLocation.innerText = p.location || "";
-
-  projectTitle.innerText = p.title || "";
-  projectDesc.innerText = p.desc || "";
-
-  sideTitle.innerText = p.title || "";
-  sideLocation.innerText = p.location || "";
-  sideYear.innerText = p.year || "";
-  sideType.innerText = p.type || "";
-
-  if (sideDesc) {
-    sideDesc.innerText = p.desc || "";
-  }
-
-  updateActiveThumbnail();
-
-  fitProjectTitleToOneLine();
+  projectTitle.innerText = project.title || "";
+  projectDesc.innerText = project.desc || "";
 }
 
+function renderProjectThumbnails() {
+  thumbnails.innerHTML = "";
 
-/* -----------------------------
-   이미지 이동
------------------------------ */
+  if (thumbSectionLabel) {
+    thumbSectionLabel.innerText = "Other Projects";
+  }
 
-function showPrevImage() {
+  if (thumbSectionGuide) {
+    thumbSectionGuide.innerText = "Select a project";
+  }
+
+  if (backButton) {
+    backButton.classList.remove("show");
+  }
+
+  projects.forEach((project, index) => {
+    if (index === activeProjectIndex) return;
+
+    const el = document.createElement("button");
+    el.className = "thumb";
+    el.type = "button";
+
+    const thumbImage = project.thumbnail || getSafeProjectImage(project, 0) || "";
+
+    el.innerHTML = `
+      <img src="${thumbImage}" alt="${project.title}">
+      <div class="thumb-text">
+        <p class="thumb-year">${project.year || ""}</p>
+        <p class="thumb-title">${project.title || ""}</p>
+        <p class="thumb-location">${project.location || ""}</p>
+      </div>
+    `;
+
+    el.addEventListener("click", () => {
+      activeProjectIndex = index;
+      activeImageIndex = 0;
+      currentMode = "gallery";
+
+      updateHeroImage();
+      updateProjectInfo();
+      renderGalleryThumbnails();
+      scrollMainToTop();
+    });
+
+    thumbnails.appendChild(el);
+  });
+}
+
+function renderGalleryThumbnails() {
+  thumbnails.innerHTML = "";
 
   const project = projects[activeProjectIndex];
+  if (!project) return;
 
+  if (thumbSectionLabel) {
+    thumbSectionLabel.innerText = "Project Images";
+  }
+
+  if (thumbSectionGuide) {
+    thumbSectionGuide.innerText = "Select an image";
+  }
+
+  if (backButton) {
+    backButton.classList.add("show");
+  }
+
+  project.images.forEach((imgPath, index) => {
+    const el = document.createElement("button");
+    el.className = "thumb gallery-thumb";
+    el.type = "button";
+
+    if (index === activeImageIndex) {
+      el.classList.add("active");
+    }
+
+    const label = String(index + 1).padStart(2, "0");
+
+    el.innerHTML = `
+      <img src="${imgPath}" alt="${project.title} ${label}">
+      <div class="thumb-text">
+        <p class="thumb-title">${project.title} / ${label}</p>
+      </div>
+    `;
+
+    el.addEventListener("click", () => {
+      activeImageIndex = index;
+      updateHeroImage();
+      renderGalleryThumbnails();
+    });
+
+    thumbnails.appendChild(el);
+  });
+}
+
+function renderThumbsByMode() {
+  if (currentMode === "gallery") {
+    renderGalleryThumbnails();
+  } else {
+    renderProjectThumbnails();
+  }
+}
+
+function showPrevImage() {
+  if (projects.length === 0) return;
+
+  if (currentMode === "projects") {
+    activeProjectIndex -= 1;
+
+    if (activeProjectIndex < 0) {
+      activeProjectIndex = projects.length - 1;
+    }
+
+    activeImageIndex = 0;
+    updateHeroImage();
+    updateProjectInfo();
+    renderProjectThumbnails();
+    return;
+  }
+
+  const project = projects[activeProjectIndex];
   if (!project || !project.images || project.images.length <= 1) return;
 
-  activeImageIndex--;
+  activeImageIndex -= 1;
 
   if (activeImageIndex < 0) {
     activeImageIndex = project.images.length - 1;
   }
 
   updateHeroImage();
+  renderGalleryThumbnails();
 }
 
-
 function showNextImage() {
+  if (projects.length === 0) return;
+
+  if (currentMode === "projects") {
+    activeProjectIndex += 1;
+
+    if (activeProjectIndex >= projects.length) {
+      activeProjectIndex = 0;
+    }
+
+    activeImageIndex = 0;
+    updateHeroImage();
+    updateProjectInfo();
+    renderProjectThumbnails();
+    return;
+  }
 
   const project = projects[activeProjectIndex];
-
   if (!project || !project.images || project.images.length <= 1) return;
 
-  activeImageIndex++;
+  activeImageIndex += 1;
 
   if (activeImageIndex >= project.images.length) {
     activeImageIndex = 0;
   }
 
   updateHeroImage();
+  renderGalleryThumbnails();
 }
 
+function backToProjectList() {
+  currentMode = "projects";
+  activeImageIndex = 0;
 
-/* -----------------------------
-   썸네일 활성화
------------------------------ */
+  updateHeroImage();
+  updateProjectInfo();
+  renderProjectThumbnails();
+}
 
-function updateActiveThumbnail() {
+function scrollMainToTop() {
+  const top = main ? main.offsetTop : 0;
 
-  const thumbElements = thumbnails.querySelectorAll(".thumb");
-
-  thumbElements.forEach((thumb, index) => {
-
-    if (index === activeProjectIndex) {
-      thumb.classList.add("active");
-    } 
-    else {
-      thumb.classList.remove("active");
-    }
-
+  window.scrollTo({
+    top,
+    behavior: "smooth",
   });
 }
 
-
-/* -----------------------------
-   썸네일 생성
------------------------------ */
-
-function loadThumbnails() {
-
-  thumbnails.innerHTML = "";
-
-  projects.forEach((p, i) => {
-
-    const el = document.createElement("button");
-    el.className = "thumb";
-    el.type = "button";
-
-    const thumbImage = p.thumbnail || (p.images && p.images[0]) || "";
-
-    el.innerHTML = `
-      <img src="${thumbImage}" alt="${p.title}">
-      <div class="thumb-text">
-        <p class="thumb-year">${p.year || ""}</p>
-        <p class="thumb-title">${p.title || ""}</p>
-        <p class="thumb-location">${p.location || ""}</p>
-      </div>
-    `;
-
-    el.addEventListener("click", () => showProject(i));
-
-    thumbnails.appendChild(el);
-
-  });
-
-  updateActiveThumbnail();
+function toggleContactPanel() {
+  if (!contactPanel) return;
+  contactPanel.classList.toggle("show");
 }
 
-
-/* -----------------------------
-   JSON 로드
------------------------------ */
+function closeContactPanel() {
+  if (!contactPanel) return;
+  contactPanel.classList.remove("show");
+}
 
 async function loadProjects() {
-
   try {
-
     const res = await fetch("projects.json");
 
     if (!res.ok) {
@@ -255,47 +300,31 @@ async function loadProjects() {
       return yearB.localeCompare(yearA);
     });
 
-    showProject(0);
+    activeProjectIndex = 0;
+    activeImageIndex = 0;
+    currentMode = "projects";
 
-    loadThumbnails();
-
-  } 
-  catch (err) {
-
+    updateHeroImage();
+    updateProjectInfo();
+    renderProjectThumbnails();
+  } catch (err) {
     console.error(err);
 
     projectTitle.innerText = "Project data could not be loaded.";
     projectDesc.innerText = "Please check projects.json and file paths.";
-
     imageCurrent.innerText = "0";
     imageTotal.innerText = "0";
 
+    if (backButton) {
+      backButton.classList.remove("show");
+    }
   }
 }
 
+/* EVENTS */
 
-/* -----------------------------
-   이벤트
------------------------------ */
-
-enterButton.addEventListener("click", enterSite);
-
-if (profileButton) {
-  profileButton.addEventListener("click", openProfile);
-}
-
-if (headerContactButton) {
-  headerContactButton.addEventListener("click", openProfile);
-}
-
-if (closeProfileButton) {
-  closeProfileButton.addEventListener("click", closeProfile);
-}
-
-if (brandButton) {
-  brandButton.addEventListener("click", () => {
-    landing.classList.remove("hidden");
-  });
+if (enterButton) {
+  enterButton.addEventListener("click", enterSite);
 }
 
 if (prevImageButton) {
@@ -306,66 +335,63 @@ if (nextImageButton) {
   nextImageButton.addEventListener("click", showNextImage);
 }
 
+if (backButton) {
+  backButton.addEventListener("click", backToProjectList);
+}
 
-window.addEventListener("wheel", (event) => {
+if (contactToggle) {
+  contactToggle.addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleContactPanel();
+  });
+}
 
-  if (event.deltaY > 20 && !landing.classList.contains("hidden")) {
-    enterSite();
-  }
+if (contactPanel) {
+  contactPanel.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+}
 
+window.addEventListener("click", () => {
+  closeContactPanel();
 });
 
+window.addEventListener(
+  "wheel",
+  (event) => {
+    if (!body.classList.contains("entered") && event.deltaY > 20) {
+      enterSite();
+    }
+  },
+  { passive: true }
+);
 
 window.addEventListener("keydown", (event) => {
+  if (!body.classList.contains("entered")) {
+    if (event.key === "Enter" || event.key === "ArrowDown") {
+      enterSite();
+    }
+    return;
+  }
 
-  if (
-    (event.key === "Enter" || event.key === "ArrowDown") &&
-    !landing.classList.contains("hidden")
-  ) {
-    enterSite();
+  if (event.key === "ArrowLeft") {
+    showPrevImage();
+  }
+
+  if (event.key === "ArrowRight") {
+    showNextImage();
   }
 
   if (event.key === "Escape") {
-    closeProfile();
-  }
-
-  if (landing.classList.contains("hidden")) {
-
-    if (event.key === "ArrowLeft") {
-      showPrevImage();
+    if (contactPanel && contactPanel.classList.contains("show")) {
+      closeContactPanel();
+      return;
     }
 
-    if (event.key === "ArrowRight") {
-      showNextImage();
+    if (currentMode === "gallery") {
+      backToProjectList();
     }
-
   }
-
 });
-
-
-if (profileOverlay) {
-
-  profileOverlay.addEventListener("click", (event) => {
-
-    if (event.target === profileOverlay) {
-      closeProfile();
-    }
-
-  });
-
-}
-
-
-/* -----------------------------
-   화면 크기 변경 시 제목 재계산
------------------------------ */
-
-window.addEventListener("resize", fitProjectTitleToOneLine);
-
-
-/* -----------------------------
-   초기 실행
------------------------------ */
 
 loadProjects();

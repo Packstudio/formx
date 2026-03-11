@@ -1,166 +1,110 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FORMX ARCHITECTS</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(주)성원건축사사무소</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
   <!-- LANDING -->
   <section id="landing">
     <div class="landing-inner">
-      <p class="landing-label">건축사사무소 포맥스</p>
-      <h1 class="landing-logo">
-        <img src="images/logo-formx.svg" alt="FORMX ARCHITECTS">
-      </h1>
-      
-      <!-- <p class="landing-text">
-        Design-driven architecture <br> Physical Space + Digital Space
-      </p> -->
+      <p class="landing-kicker">(주)성원건축사사무소</p>
 
-      <div class="landing-buttons">
-        <button id="enterButton">Enter</button>
-        <button id="profileButton" class="button-secondary">Profile</button>
+      <h1 class="landing-logo">
+        <img src="images/logo-sungwon.svg" alt="성원건축사사무소" />
+      </h1>
+
+      <p class="landing-copy">
+        건축설계 / 감리 / 시공 / 디자인 / 적산
+      </p>
+
+      <div class="landing-actions">
+        <button id="enterButton" type="button">Enter</button>
       </div>
 
-      <p class="landing-guide">Architecture | Interior <br> Spatial consulting | Design</p>
+      <p class="landing-guide">Scroll Down</p>
     </div>
   </section>
 
   <!-- MAIN -->
   <main id="main">
-    <div class="main-wrap">
+    <div class="page-container">
+
       <header class="site-header">
-        <div class="brand" id="brandButton">
-          <p>건축사사무소 포맥스</p>
-          <h2>FORMX ARCHITECTS</h2>
+        <div class="site-brand">
+          <p class="brand-kicker">Portfolio Archive</p>
         </div>
 
-        <div class="header-actions">
-          <button id="headerContactButton" class="button-small" type="button">Contact</button>
+        <div class="header-contact-wrap">
+          <button id="contactToggle" class="contact-toggle" type="button">
+            성원건축사사무소
+          </button>
+
+          <div id="contactPanel" class="contact-panel">
+            <p><i class="fa-solid fa-envelope"></i> packstudio@naver.com</p>
+            <p><i class="fa-solid fa-phone"></i> 010-9674-2033</p>
+            <p><i class="fa-solid fa-location-dot"></i> Cheongju-si, Republic of Korea</p>
+            <p><i class="fa-brands fa-instagram"></i> @formx.architects</p>
+          </div>
         </div>
       </header>
 
-      <section id="viewer">
-        <div id="hero">
-          <button class="nav-arrow left" id="prevImage" type="button" aria-label="Previous image">‹</button>
+      <section class="hero-section">
+        <div class="hero-media">
+          <button id="backButton" class="back-button" type="button">
+            Back to Projects
+          </button>
 
-          <img id="heroImage" src="" alt="project image">
+          <button class="hero-arrow left" id="prevImage" type="button" aria-label="Previous image">
+            ‹
+          </button>
 
-          <button class="nav-arrow right" id="nextImage" type="button" aria-label="Next image">›</button>
+          <img id="heroImage" src="" alt="project image" />
 
-          <div id="hero-info">
-            <div class="hero-meta">
-              <span id="heroType"></span>
-              <span class="dot"></span>
-              <span id="heroYear"></span>
-              <span class="dot"></span>
-              <span id="heroLocation"></span>
-            </div>
+          <button class="hero-arrow right" id="nextImage" type="button" aria-label="Next image">
+            ›
+          </button>
+        </div>
+      </section>
 
-            <h3 id="projectTitle"></h3>
-            <p id="projectDesc"></p>
-
-            <div class="image-indicator">
-              <span id="imageCurrent">1</span>
-              <span>/</span>
-              <span id="imageTotal">1</span>
-            </div>
+      <section class="project-info-bar">
+        <div class="info-main">
+          <div class="info-meta">
+            <span id="heroType"></span>
+            <span class="divider"></span>
+            <span id="heroYear"></span>
+            <span class="divider"></span>
+            <span id="heroLocation"></span>
           </div>
+
+          <h3 id="projectTitle"></h3>
+          <p id="projectDesc"></p>
         </div>
 
-        <aside id="side">
-          <p class="side-label">Current Selection</p>
-          <h3 id="sideTitle"></h3>
-
-          <div class="side-group">
-            <p class="side-title">Location</p>
-            <p id="sideLocation"></p>
+        <div class="info-side">
+          <div class="image-counter">
+            <span id="imageCurrent">1</span>
+            <span>/</span>
+            <span id="imageTotal">1</span>
           </div>
-
-          <div class="side-group">
-            <p class="side-title">Year</p>
-            <p id="sideYear"></p>
-          </div>
-
-          <div class="side-group">
-            <p class="side-title">Program</p>
-            <p id="sideType"></p>
-          </div>
-
-          <div class="side-group">
-            <p class="side-title">Description</p>
-            <p id="side-desc"></p>
-          </div>
-
-          <div class="side-contact">
-            <p class="side-title">Contact</p>
-            <p><i class="fa-solid fa-envelope"></i>  packstudio@naver.com</p>
-            <p><i class="fa-solid fa-phone"></i>  010-9674-2033</p>
-            <p><i class="fa-brands fa-instagram"></i>  @formx.architects</p>
-          </div>
-        </aside>
+        </div>
       </section>
 
       <section class="thumb-section">
         <div class="thumb-header">
-          <p>Selected Projects</p>
-          <span>Click a thumbnail to switch project</span>
+          <p id="thumbSectionLabel">Other Projects</p>
+          <span id="thumbSectionGuide">Select a project</span>
         </div>
 
         <div id="thumbnails"></div>
       </section>
+
     </div>
   </main>
-
-  <!-- PROFILE OVERLAY -->
-  <div id="profileOverlay">
-    <div class="about-box">
-      <button id="closeProfileButton" class="close-button" type="button">Close</button>
-
-      <p class="about-label">Profile</p>
-      <h2>FORMX ARCHITECTS</h2>
-
-      <p class="about-text">
-        FORMX ARCHITECTS is a design-driven architecture and spatial design studio.
-        <br>
-        Our work spans architecture, interior design, renovation, and spatial strategy.
-      </p>
-
-      <div class="about-grid">
-        <div>
-          <p class="about-subtitle">Services</p>
-          <ul>
-            <li>Architectural Design</li>
-            <li>Interior Design</li>
-            <li>Renovation / Remodeling</li>
-            <li>Concept Development</li>
-          </ul>
-        </div>
-
-        <div>
-          <p class="about-subtitle_2">Contact</p>
-          <ul class="contact-list_none">
-            <li>
-              <i class="fa-solid fa-envelope"></i>  packstudio@naver.com
-            </li>
-            <li>
-              <i class="fa-solid fa-phone"></i>  010-9674-2033
-            </li>
-            <li>
-              <i class="fa-solid fa-location-dot"></i>  Cheongju-si, Republic of Korea
-            </li>
-            <li>
-              <i class="fa-brands fa-instagram"></i>  @formx.architects
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>
