@@ -14,8 +14,6 @@ const heroImage = document.getElementById("heroImage");
 const heroType = document.getElementById("heroType");
 const heroYear = document.getElementById("heroYear");
 const heroLocation = document.getElementById("heroLocation");
-const projectTitle = document.getElementById("projectTitle");
-const projectDesc = document.getElementById("projectDesc");
 
 const sideTitle = document.getElementById("sideTitle");
 const sideLocation = document.getElementById("sideLocation");
@@ -65,48 +63,10 @@ function updateHeroImage() {
 
 
 /* -----------------------------
-   제목을 항상 한 줄로 맞추는 함수
------------------------------ */
-
-function fitProjectTitleToOneLine() {
-
-  const isMobile = window.innerWidth <= 480;
-  const isTablet = window.innerWidth <= 768;
-
-  let maxSize;
-  let minSize;
-
-  if (isMobile) {
-    maxSize = 12;
-    minSize = 8;
-  } 
-  else if (isTablet) {
-    maxSize = 14;
-    minSize = 9;
-  } 
-  else {
-    maxSize = 15;
-    minSize = 10;
-  }
-
-  projectTitle.style.fontSize = maxSize + "px";
-
-  while (
-    projectTitle.scrollWidth > projectTitle.clientWidth &&
-    maxSize > minSize
-  ) {
-    maxSize -= 0.5;
-    projectTitle.style.fontSize = maxSize + "px";
-  }
-}
-
-
-/* -----------------------------
    프로젝트 표시
 ----------------------------- */
 
 function showProject(index) {
-
   const p = projects[index];
   if (!p) return;
 
@@ -119,21 +79,13 @@ function showProject(index) {
   heroYear.innerText = p.year || "";
   heroLocation.innerText = p.location || "";
 
-  projectTitle.innerText = p.title || "";
-  projectDesc.innerText = p.desc || "";
-
   sideTitle.innerText = p.title || "";
   sideLocation.innerText = p.location || "";
   sideYear.innerText = p.year || "";
   sideType.innerText = p.type || "";
-
-  if (sideDesc) {
-    sideDesc.innerText = p.desc || "";
-  }
+  sideDesc.innerText = p.desc || "";
 
   updateActiveThumbnail();
-
-  fitProjectTitleToOneLine();
 }
 
 
@@ -142,9 +94,7 @@ function showProject(index) {
 ----------------------------- */
 
 function showPrevImage() {
-
   const project = projects[activeProjectIndex];
-
   if (!project || !project.images || project.images.length <= 1) return;
 
   activeImageIndex--;
@@ -156,11 +106,8 @@ function showPrevImage() {
   updateHeroImage();
 }
 
-
 function showNextImage() {
-
   const project = projects[activeProjectIndex];
-
   if (!project || !project.images || project.images.length <= 1) return;
 
   activeImageIndex++;
@@ -178,18 +125,14 @@ function showNextImage() {
 ----------------------------- */
 
 function updateActiveThumbnail() {
-
   const thumbElements = thumbnails.querySelectorAll(".thumb");
 
   thumbElements.forEach((thumb, index) => {
-
     if (index === activeProjectIndex) {
       thumb.classList.add("active");
-    } 
-    else {
+    } else {
       thumb.classList.remove("active");
     }
-
   });
 }
 
@@ -199,11 +142,9 @@ function updateActiveThumbnail() {
 ----------------------------- */
 
 function loadThumbnails() {
-
   thumbnails.innerHTML = "";
 
   projects.forEach((p, i) => {
-
     const el = document.createElement("button");
     el.className = "thumb";
     el.type = "button";
@@ -220,9 +161,7 @@ function loadThumbnails() {
     `;
 
     el.addEventListener("click", () => showProject(i));
-
     thumbnails.appendChild(el);
-
   });
 
   updateActiveThumbnail();
@@ -234,9 +173,7 @@ function loadThumbnails() {
 ----------------------------- */
 
 async function loadProjects() {
-
   try {
-
     const res = await fetch("projects.json");
 
     if (!res.ok) {
@@ -255,21 +192,17 @@ async function loadProjects() {
       return yearB.localeCompare(yearA);
     });
 
+    loadThumbnails();
     showProject(0);
 
-    loadThumbnails();
-
-  } 
-  catch (err) {
-
+  } catch (err) {
     console.error(err);
 
-    projectTitle.innerText = "Project data could not be loaded.";
-    projectDesc.innerText = "Please check projects.json and file paths.";
+    sideTitle.innerText = "Project data could not be loaded.";
+    sideDesc.innerText = "Please check projects.json and file paths.";
 
     imageCurrent.innerText = "0";
     imageTotal.innerText = "0";
-
   }
 }
 
@@ -306,18 +239,13 @@ if (nextImageButton) {
   nextImageButton.addEventListener("click", showNextImage);
 }
 
-
 window.addEventListener("wheel", (event) => {
-
   if (event.deltaY > 20 && !landing.classList.contains("hidden")) {
     enterSite();
   }
-
 });
 
-
 window.addEventListener("keydown", (event) => {
-
   if (
     (event.key === "Enter" || event.key === "ArrowDown") &&
     !landing.classList.contains("hidden")
@@ -330,7 +258,6 @@ window.addEventListener("keydown", (event) => {
   }
 
   if (landing.classList.contains("hidden")) {
-
     if (event.key === "ArrowLeft") {
       showPrevImage();
     }
@@ -338,30 +265,16 @@ window.addEventListener("keydown", (event) => {
     if (event.key === "ArrowRight") {
       showNextImage();
     }
-
   }
-
 });
 
-
 if (profileOverlay) {
-
   profileOverlay.addEventListener("click", (event) => {
-
     if (event.target === profileOverlay) {
       closeProfile();
     }
-
   });
-
 }
-
-
-/* -----------------------------
-   화면 크기 변경 시 제목 재계산
------------------------------ */
-
-window.addEventListener("resize", fitProjectTitleToOneLine);
 
 
 /* -----------------------------
